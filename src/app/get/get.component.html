@@ -1,0 +1,155 @@
+  <h2 class="text-success text-center">Crud Operation </h2>
+<div class="body">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 p-0">
+  
+      <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-color">
+          <div class="panel-heading" role="tab" id="headingOne_17">
+            <h6 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion_17" href="#collapseOne_1"
+                aria-expanded="true" aria-controls="collapseOne_1">
+               
+              </a>
+            </h6>
+          </div>
+          <div id="collapseOne_1" class="panel-collapse collapse in show" role="tabpanel"
+            aria-labelledby="headingOne_1">
+            <div class="panel-body">
+              <form [formGroup]="employeeform">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-10 edit-panel">
+                    <div class="input-field">
+                    
+                      <div class="input-field">
+                        <input type="number" formControlName="id" class="form-control" [ngClass]="{ 'is-invalid': f.id.touched && f.id.errors }"/>
+                        <div *ngIf="f.id.touched && f.id.errors" class="invalid-feedback">
+                            <div *ngIf="f.id.errors.required"> id is required</div>
+                        </div>
+                        <label for="id">EmployeeId<span class="text-danger">*</span></label>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-6">
+                    <div class="floating-label">
+                    
+                      <div class="input-field">
+                        <input type="text" formControlName="ename" class="form-control" id="name" [ngClass]="{ 'is-invalid': f.ename.touched && f.ename.errors }"/>
+                        <div *ngIf="f.ename.touched && f.ename.errors" class="invalid-feedback">
+                            <div *ngIf="f.ename.errors.required"> Name is required</div>
+                        </div>
+                        <label for="name">EmployeeName<span class="text-danger">*</span></label>
+                      </div>
+                     
+                  </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-6">
+                    <div class="floating-label">
+                    
+                      <div class="input-field">
+                        <input type="number" formControlName="salary" class="form-control" id="salary" [ngClass]="{ 'is-invalid': f.salary.touched && f.salary.errors }">
+                        <div *ngIf="f.salary.touched && f.salary.errors" class="invalid-feedback">
+                            <div *ngIf="f.salary.errors.required"> Salary is required</div>
+                        </div>
+                        <label for="salary">Salary<span class="text-danger">*</span></label>
+                      </div>
+                     
+                  </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-6">
+                    <div class="floating-label">
+                    
+                      <div class="input-field">
+                        <input type="text" formControlName="city" class="form-control" id="city" [ngClass]="{ 'is-invalid': f.city.touched && f.city.errors }">
+                        <div *ngIf="f.city.touched && f.city.errors" class="invalid-feedback">
+                            <div *ngIf="f.city.errors.required"> City is required</div>
+                        </div>
+                        <label for="city">City<span class="text-danger">*</span></label>
+                      </div>
+                     
+                  </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-6">
+                    <div class="floating-label">
+                    
+                      <div class="input-field">
+                        <input type="number" formControlName="number" class="form-control" id="number" [ngClass]="{ 'is-invalid': f.number.touched && f.number.errors }">
+                        <div *ngIf="f.number.touched && f.number.errors" class="invalid-feedback">
+                            <div *ngIf="f.number.errors.required"> number is required</div>
+                            <div *ngIf="f.number.errors.minlength">number must be  10 digits</div>
+                        </div>
+                        <label for="number">Phonenumber<span class="text-danger">*</span></label>
+                      </div>
+                     
+                  </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-6 text-right">
+                   
+                      <button type="button" (click)="getemployeee()"  *ngIf="add_button" class="btn btn-bg btn btn-primary"><i class="fas fa-plus"></i> &nbsp;Add</button>&nbsp;
+                      <button type="button" *ngIf="update_button" class="btn btn-bg btn btn-primary"  (click)="updateAllergyList(employeeform)"
+                      ><i class="fas fa-plus"></i> &nbsp;
+                     Update</button>&nbsp;
+                      <button type="button" class="btn btn-default btn btn-danger" ><i
+                        class="fas fa-eraser">
+                      </i>&nbsp;
+                      Delete</button> 
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover save-stage dataTable" style="width:100%;">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th class="sorting_asc">employeeId</th>
+            <th class="sorting_asc">employeeName</th>
+            <th class="sorting_asc">employeeSalary</th>
+            <th class="sorting_asc">employeeCity</th>
+            <th class="sorting_asc">employeePhoneNumber</th>
+            <th class="sorting_asc">Edit</th>
+            <th class="sorting_asc">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+           <tr class="text-center"  *ngFor="let user of users ; let i = index "  >
+            <td>{{i+1}}</td>
+            <td>{{user.employeeId}}</td>
+            <td>{{user.employeeName}}</td>
+            <td>{{user.employeeSalary}}</td>
+            <td>{{user.employeeCity}}</td>
+            <td>{{user.employeePhoneNumber}}</td>
+            <td><i style="cursor:pointer" class="fas fa-pencil-alt text-blue action m-r-10" id="edit" title="Edit"
+                (click)="editemployee(user)"
+             > </i>  </td>
+             <td class="point text-center text-danger" (click)="deleteemp(user)" title="Delete">
+              <i class="fas fa-trash-alt" ></i>
+          </td>
+          </tr> 
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-12 col-md-12 col-12">
+      <div class="row">
+          <!-- <div>
+              <span class="m-2">Items per page</span>
+              <select [(ngModel)]="pages">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+              </select>
+              <pagination-controls (pageChange)="p = $event" id="pd" style="float:right"></pagination-controls>
+             
+            </div> -->
+     
+      <!-- <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls> -->
+    </div>
+  </div>
